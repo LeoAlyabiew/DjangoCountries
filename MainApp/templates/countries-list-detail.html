@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ country_name }}</title>
+    <link rel="stylesheet" href="{% static 'countries-list.css' %}">
+</head>
+<body>
+<h1 class="item">{{ country_name }}</h1>
+<ol>
+    {% for item in languages %}
+        <li class="item">
+            {{ item }}
+        </li>
+    {% endfor %}
+</ol>
+</body>
+</html>
