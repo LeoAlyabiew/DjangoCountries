@@ -10,7 +10,7 @@
 <h1 class="item">Все страны</h1>
 <ol>
     {% for country in countries %}
-        <li class="item"><a href="{% url 'detail' country %}" class="item">{{ country }}</a></li>
+        <li class="item"><a href="{% url 'detail' country.name %}" class="item">{{ country.name }}</a></li>
     {% endfor %}
 </ol>
 </body>
