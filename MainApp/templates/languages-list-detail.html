@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ country_name }}</title>
+    <title>{{ language }}</title>
     <link rel="stylesheet" href="{% static 'countries-list.css' %}">
 </head>
 <body>
-<h1 class="item">{{ country_name }}</h1>
+<h1 class="item">{{ language }}</h1>
 <ol>
-    {% for item in languages %}
+    {% for item in countries %}
         <li class="item">
             {{ item.name }}
         </li>

@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 from django.views import View
-from MainApp.models import Country
+from MainApp.models import Country, Language
 
 
 # Create your views here.
@@ -16,28 +16,26 @@ def countries_list(request):
 
 
 def countries_list_detail(request, country_name):
-    with open('./country-by-languages.json', 'r') as countries:
-        data = json.load(countries)
-        result = []
-        for item in data:
-            if item['country'] == country_name:
-                result = item['languages']
-                break
+    country = Country.objects.get(name=country_name)
+    languages = country.languages.all()
 
     return render(request, 'countries-list-detail.html', {
         'country_name': country_name,
-        'languages': result,
+        'languages': languages,
     })
 
 
 def languages_list(request):
-    with open('./country-by-languages.json', 'r') as countries:
-        data = json.load(countries)
-        result = []
-        for item in data:
-            result += item['languages']
-        _result = set(result)
-        result = list(_result)
-        result = sorted(result)
+    result = Language.objects.all().order_by('name')
 
     return render(request, 'languages-list.html', {'languages': result})
+
+
+def languages_list_detail(request, language_name):
+    language = Language.objects.get(name=language_name)
+    countries = language.country_set.all()
+
+    return render(request, 'languages-list-detail.html', {
+        'countries': countries,
+        'language': language_name,
+    })

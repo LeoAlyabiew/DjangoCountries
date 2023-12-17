@@ -1,14 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Languages list</title>
+    <link rel="stylesheet" href="{% static 'countries-list.css' %}">
 </head>
 <body>
-<h1>Все языки</h1>
+<h1 class="item">Все языки</h1>
 <ol>
     {% for item in languages %}
-        <li>{{ item }}</li>
+        <li class="item"><a href="{% url 'language_detail' item.name %}" class="item">{{ item.name }}</a></li>
     {% endfor %}
 </ol>
 </body>
