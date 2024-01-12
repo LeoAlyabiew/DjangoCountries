@@ -8,10 +8,18 @@
 </head>
 <body>
 <h1 class="item">Все страны</h1>
+<div>
+    {% for item in alphabet %}
+        <a href="{% url 'sorting' item %}" class="item">{{ item }}</a>
+    {% endfor %}
+</div>
 <ol>
     {% for country in countries %}
         <li class="item"><a href="{% url 'country_detail' country.name %}" class="item">{{ country.name }}</a></li>
     {% endfor %}
 </ol>
+{% for item in paginator.page_range %}
+<a href="{% url 'countries_list' item %}" class="item">{{ item }}</a>
+{% endfor %}
 </body>
 </html>
